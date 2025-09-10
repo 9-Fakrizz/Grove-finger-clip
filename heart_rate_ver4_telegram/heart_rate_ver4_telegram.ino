@@ -8,8 +8,8 @@
 #define RELAY 5
 
 // Replace with your network credentials
-const char* ssid = "CARETUNU";
-const char* password = "98765432";
+const char* ssid = "Ok";
+const char* password = "q12345678";
 
 // Replace with your LINE Notify token
 // const char* lineToken = "v2qQQD4CEM5H5KZjPkhAvL5gmF2DwiYz5bDX2j3MKkf";
@@ -72,8 +72,10 @@ const char* root_ca = \
 //   }
 // }
 
-const char* botToken = "YOUR_TELEGRAM_BOT_TOKEN"; // Replace with your bot token
-const char* chatID = "YOUR_CHAT_ID";              // Replace with your chat ID
+const char* botToken = "7991014450:AAGjCEUHqhbV-E9Q2YQP-ZdgmakDjq52550"; // Replace with your bot token
+const char* chatID = "7625451518";              // Replace with your chat ID
+// String BOT_TOKEN = "7991014450:AAGjCEUHqhbV-E9Q2YQP-ZdgmakDjq52550";
+// String CHAT_ID = "7625451518";
 
 void sendTelegramMessage(const String &message) {
   if (WiFi.status() == WL_CONNECTED) {
@@ -233,11 +235,11 @@ void loop() {
     Wire.requestFrom(0xA0 >> 1, 1);    // request 1 byte from slave device
     while (Wire.available()) {          // slave may send less than requested
       unsigned char c = Wire.read();   // receive heart rate value (a byte)
-      Serial.print(c, DEC);         // print heart rate value
+      //Serial.print(c, DEC);         // print heart rate value
       str += c;
     }
     Serial.println();
-    heart_rate_value = str.toInt() - 15;
+    heart_rate_value = str.toInt();
     Serial.println("heart_rate_value >> " + String(heart_rate_value));
     timer1 = millis();
   }
@@ -251,6 +253,7 @@ void loop() {
   else{
     lcd.print("--");
   }
+  Serial.println("Temp : " + String(temperature));
   lcd.print(" BPM.");
   lcd.setCursor(0, 1);
   lcd.print("Temp: ");
